@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Email Validation on Blur</title>
+</head>
+<body>
+
+  <form id="emailForm" novalidate>
+    <label for="email">Email:</label><br/>
+    <input type="email" id="email" /><br/>
+    <div id="message"></div>
+  </form>
+
+  <script>
+    const emailInput = document.getElementById('email');
+    const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
+    emailInput.addEventListener('blur', () => {
+      const email = emailInput.value.trim();
+      if (email === '') {
+        document.getElementById('message').innerHTML = '';
+        return;
+      }
+
+      if (emailRegex.test(email)) {
+        document.getElementById('message').innerHTML = 'Email is valid!';
+      } else {
+        document.getElementById('message').innerHTML = 'Invalid email format.';
+      }
+    });
+  </script>
+
+</body>
+</html>
